@@ -7,7 +7,11 @@ authors = [
     { name = "Karim Abousselham", email = "karim.abousselham@gmail.com" }
 ]
 requires-python = ">=3.12.11"
-dependencies = []
+dependencies = [
+    "datasets>=4.0.0",
+    "mlflow>=3.1.4",
+    "ollama>=0.5.3",
+]
 
 [build-system]
 requires = ["hatchling"]

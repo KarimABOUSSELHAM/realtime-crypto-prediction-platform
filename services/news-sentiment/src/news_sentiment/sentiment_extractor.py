@@ -13,7 +13,7 @@ class SentimentExctractor:
     def __init__(
         self,
         model,
-        base_url: Optional[str] = 'http://localhost:11434/v1',
+        base_url: Optional[str] = 'http://localhost:11434/v1',  # Ollama default
     ):
         self.model = model
         self.base_url = base_url
@@ -43,8 +43,9 @@ class SentimentExctractor:
                     'api_key': os.environ.get('ANTHROPIC_API_KEY'),
                 },
             )
-        elif model_provider == 'openai-generic':
-            # Creates a new client for OpenAI models
+        elif (
+            model_provider == 'openai-generic'
+        ):  # `openai-generic` stands for local ollama models
             cr.add_llm_client(
                 name='MyDynamicClient',
                 provider='openai-generic',
@@ -72,7 +73,8 @@ class SentimentExctractor:
             SentimentScores: Object instance which includes the scores
         """
         return b.ExtractSentimentScores(
-            news, {'client_registry': self._client_registry}
+            news,
+            {'client_registry': self._client_registry},
         )
 
 
